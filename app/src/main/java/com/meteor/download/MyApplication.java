@@ -2,7 +2,7 @@ package com.meteor.download;
 
 import android.app.Application;
 
-import com.meteor.downloadlib.Downloader;
+import com.meteor.downloadlib.DownloaderAppliaction;
 
 /**
  * @Author Gongll
@@ -13,6 +13,6 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Downloader.init(this);
+        DownloaderAppliaction.init(this);
     }
 }

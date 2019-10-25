@@ -2,7 +2,7 @@ package com.meteor.downloadlib.utils;
 
 import android.content.Context;
 
-import com.meteor.downloadlib.Downloader;
+import com.meteor.downloadlib.DownloaderAppliaction;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,7 +14,7 @@ import java.io.FileInputStream;
  */
 public class FileUtil {
     private static String storagePath = "";
-    private static final File parentPath = Downloader.getContent().getExternalFilesDir(null);
+    private static final File parentPath = DownloaderAppliaction.getContent().getExternalFilesDir(null);
     private static String DST_FOLDER_NAME = "JDownload";
 
     public static String getDownloadDir(Context context) {

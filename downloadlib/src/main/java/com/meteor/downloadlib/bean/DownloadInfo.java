@@ -1,6 +1,10 @@
 package com.meteor.downloadlib.bean;
 
+import com.meteor.downloadlib.DownloaderAppliaction;
 import com.meteor.downloadlib.manager.DownloadManager;
+import com.meteor.downloadlib.utils.FileUtil;
+
+import java.util.List;
 
 /**
  * @Author Gongll
@@ -12,39 +16,30 @@ public class DownloadInfo {
     private int downloadState;//下载状态
     private int currentSize;//已经下载
     private String path;//路径
-    private int appSize;//app大小
+    private int total;//app大小
     private String url;
-    private long progress;
+    private List<String> urls;
 
-    private boolean hasFinished;
-
-    public static DownloadInfo clone(AppInfo appInfo) {
+    public static DownloadInfo clone(boolean isParticle, AppInfo appInfo) {
         DownloadInfo info = new DownloadInfo();
         info.setId(appInfo.getId());
         info.setDownloadState(DownloadManager.STATE_NONE);
         info.setCurrentSize(0);
-        info.setPath("/mnt/sdcard/123.exe");
-        info.setAppSize(appInfo.getAppSize());
-        info.setUrl(appInfo.getUrl());
-        info.setProgress(0L);
-        info.setHasFinished(false);
+        info.setPath(FileUtil.getDownloadDir(DownloaderAppliaction.getContent()) + "/" + appInfo.getName());
+        if (isParticle) {
+            info.setUrls(appInfo.getUrls());
+        } else {
+            info.setUrl(appInfo.getUrl());
+        }
         return info;
     }
 
-    public boolean isHasFinished() {
-        return hasFinished;
+    public List<String> getUrls() {
+        return urls;
     }
 
-    public void setHasFinished(boolean hasFinished) {
-        this.hasFinished = hasFinished;
-    }
-
-    public long getProgress() {
-        return progress;
-    }
-
-    public void setProgress(long progress) {
-        this.progress = progress;
+    public void setUrls(List<String> urls) {
+        this.urls = urls;
     }
 
     public String getUrl() {
@@ -55,12 +50,12 @@ public class DownloadInfo {
         this.url = url;
     }
 
-    public int getAppSize() {
-        return appSize;
+    public int getTotal() {
+        return total;
     }
 
-    public void setAppSize(int appSize) {
-        this.appSize = appSize;
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public String getPath() {
